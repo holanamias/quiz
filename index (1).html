@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Tu negocio está disperso o tú? — Anamias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FFF8F2;
+    --rust: #C4521A;
+    --rust-light: #F5E8E0;
+    --dark: #1E0E08;
+    --muted: #7A5A4A;
+    --yellow: #F5C84A;
+    --green: #4A8C6F;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .brand {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  /* Intro screen */
+  #screen-intro h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  #screen-intro h1 span {
+    color: var(--rust);
+  }
+
+  .intro-desc {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .tag {
+    background: var(--rust-light);
+    color: var(--rust);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+
+  .btn-start {
+    display: inline-block;
+    background: var(--rust);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 36px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-start:hover { background: #A84018; }
+
+  /* Quiz screen */
+  #screen-quiz { display: none; }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: #E8D8CE;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--rust);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-label {
+    font-size: 13px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .question-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px;
+    border: 1.5px solid #EDD8CC;
+  }
+
+  .question-num {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    font-family: var(--font-display);
+    font-size: clamp(19px, 3.5vw, 24px);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 28px;
+    color: var(--dark);
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border: 1.5px solid #EDD8CC;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--cream);
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .opt:hover {
+    border-color: var(--rust);
+    background: var(--rust-light);
+  }
+
+  .opt.selected {
+    border-color: var(--rust);
+    background: var(--rust-light);
+  }
+
+  .opt-letter {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #EDD8CC;
+    color: var(--rust);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .opt.selected .opt-letter {
+    background: var(--rust);
+    color: #fff;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+
+  .btn-next {
+    background: var(--rust);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+  }
+
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-next:not(:disabled):hover { background: #A84018; }
+
+  /* Result screen */
+  #screen-result { display: none; }
+
+  .result-header {
+    margin-bottom: 32px;
+  }
+
+  .result-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .result-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .result-title span { color: var(--rust); }
+
+  .result-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px;
+    border: 1.5px solid #EDD8CC;
+    margin-bottom: 24px;
+  }
+
+  .result-emoji {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .result-profile {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+
+  .result-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .result-body strong { color: var(--dark); font-weight: 500; }
+
+  .result-badge {
+    display: inline-block;
+    background: var(--rust-light);
+    color: var(--rust);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 100px;
+  }
+
+  .cta-block {
+    background: var(--dark);
+    border-radius: 20px;
+    padding: 32px 36px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .cta-block h3 {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .cta-block p {
+    font-size: 15px;
+    opacity: 0.75;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .cta-block a {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .cta-block a:hover { opacity: 0.85; }
+
+  .btn-retry {
+    background: none;
+    border: 1.5px solid #EDD8CC;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-retry:hover { border-color: var(--rust); color: var(--rust); }
+
+  .footer-brand {
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer-brand a {
+    color: var(--rust);
+    text-decoration: none;
+  }
+
+  @media (max-width: 480px) {
+    .question-card, .result-card, .cta-block { padding: 24px 20px; }
+    .wrap { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="brand">Anamias · @holanamias</p>
+
+  <!-- INTRO -->
+  <div id="screen-intro">
+    <h1>¿Tu negocio<br>está disperso<br>o <span>eres tú</span>?</h1>
+    <p class="intro-desc">6 preguntas para entender de dónde viene el caos — y qué hacer con eso.</p>
+    <div class="tag-row">
+      <span class="tag">Emprendedoras dispersas</span>
+      <span class="tag">TDAH y afines</span>
+      <span class="tag">Sin fórmulas de 47 pasos</span>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Empezar el quiz →</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz">
+    <div class="progress-row">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+      <span class="progress-label" id="progress-label">1 de 6</span>
+    </div>
+    <div class="question-card">
+      <p class="question-num" id="q-num">Pregunta 1</p>
+      <p class="question-text" id="q-text"></p>
+      <div class="options" id="q-options"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-next" id="btn-next" disabled onclick="nextQ()">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="screen-result">
+    <div class="result-header">
+      <p class="result-eyebrow">Tu resultado</p>
+      <h2 class="result-title">Acá está<br><span>lo que está pasando</span></h2>
+    </div>
+    <div class="result-card" id="result-card"></div>
+    <div class="cta-block">
+      <h3>¿Quieres entender esto más en profundidad?</h3>
+      <p>Hago una sesión de diagnóstico donde revisamos tu negocio y sales con 3 pasos concretos para tu caso específico.</p>
+      <a href="https://instagram.com/holanamias" target="_blank">Escríbeme a Instagram →</a>
+    </div>
+    <button class="btn-retry" onclick="retry()">Volver a empezar</button>
+  </div>
+
+  <p class="footer-brand">Hecho con criterio por <a href="https://instagram.com/holanamias" target="_blank">@holanamias</a></p>
+
+</div>
+
+<script>
+const questions = [
+  {
+    text: "¿Cuál describe mejor tu semana típica en el negocio?",
+    options: [
+      { letter: "A", text: "Empiezo mil cosas y no termino ninguna — siempre hay algo más urgente.", profile: 1 },
+      { letter: "B", text: "Trabajo según lo que vi en otras cuentas o lo que 'debería' estar haciendo, pero no me sale natural.", profile: 2 },
+      { letter: "C", text: "Trabajo, pero me siento vacía. Aunque avance, no tengo energía para sostenerlo.", profile: 3 }
+    ]
+  },
+  {
+    text: "Cuando no publicas en redes, ¿qué pasa por tu cabeza?",
+    options: [
+      { letter: "A", text: "Se me ocurrieron demasiadas ideas y no supe cuál elegir, entonces no publiqué ninguna.", profile: 1 },
+      { letter: "B", text: "Siento que lo que hago no se parece a lo que funciona para otras. No sé cómo posicionarme.", profile: 2 },
+      { letter: "C", text: "Simplemente no tenía energía. Y me culpo por eso después.", profile: 3 }
+    ]
+  },
+  {
+    text: "¿Qué describe mejor tu relación con las tareas del negocio?",
+    options: [
+      { letter: "A", text: "Todo me parece urgente e importante al mismo tiempo. No puedo priorizar.", profile: 1 },
+      { letter: "B", text: "Sigo pasos que aprendí, pero siento que no están diseñados para cómo funciona mi cabeza.", profile: 2 },
+      { letter: "C", text: "Hay días en que ni abrir el computador puedo. No es pereza — es que estoy agotada.", profile: 3 }
+    ]
+  },
+  {
+    text: "¿Cuándo sientes que avanzas más?",
+    options: [
+      { letter: "A", text: "Cuando agarro un solo proyecto y le doy con todo, sin distraerme en lo demás.", profile: 1 },
+      { letter: "B", text: "Cuando encuentro algo que sí calza conmigo y con cómo pienso — no lo que funciona para otras.", profile: 2 },
+      { letter: "C", text: "En los momentos de hiperfoco, que son pocos pero potentes. El problema es sostenerlos.", profile: 3 }
+    ]
+  },
+  {
+    text: "¿Qué es lo que más te frustra de tu negocio ahora mismo?",
+    options: [
+      { letter: "A", text: "Tengo demasiadas ideas y no sé cuál desarrollar primero.", profile: 1 },
+      { letter: "B", text: "Hago lo que 'se supone' que hay que hacer, pero no se siente mío.", profile: 2 },
+      { letter: "C", text: "Me agota y no sé si puedo seguir a este ritmo mucho más tiempo.", profile: 3 }
+    ]
+  },
+  {
+    text: "Si pudieras cambiar una sola cosa de cómo funciona tu negocio hoy, ¿qué sería?",
+    options: [
+      { letter: "A", text: "Tener foco claro y saber exactamente qué priorizar.", profile: 1 },
+      { letter: "B", text: "Que esté armado para mi cabeza, no para la de alguien más.", profile: 2 },
+      { letter: "C", text: "Que pueda sostenerlo sin quemarme ni desaparecer.", profile: 3 }
+    ]
+  }
+];
+
+const profiles = {
+  1: {
+    emoji: "🌪",
+    name: "Dispersión por exceso de ideas",
+    badge: "El problema es el foco",
+    body: `Tu negocio tiene combustible de sobra — el problema es que se reparte en <strong>demasiadas direcciones al mismo tiempo</strong>. No te falta motivación ni capacidad. Te falta un filtro que te diga qué va ahora, qué va después, y qué va nunca.<br><br>No es que seas desorganizada. Es que nadie te ayudó a <strong>elegir una sola cosa</strong> y quedarte ahí el tiempo suficiente para ver resultados.`
+  },
+  2: {
+    emoji: "🧩",
+    name: "Dispersión por sistema mal calzado",
+    badge: "El negocio no es para tu cabeza",
+    body: `Llevas tiempo funcionando con un modelo que <strong>no fue diseñado para tu forma de pensar</strong>. Copiaste estructuras que funcionan para otras, y sigues sintiéndote fuera de lugar — aunque técnicamente estés haciendo las cosas bien.<br><br>El problema no eres tú. Es que nadie te ayudó a <strong>armar un negocio que calce con tu mente</strong>, no con el manual de alguien más.`
+  },
+  3: {
+    emoji: "🔋",
+    name: "Dispersión por agotamiento",
+    badge: "El problema es la sostenibilidad",
+    body: `Tienes estrategia, tienes ideas, tienes ganas — pero <strong>el cuerpo no da más</strong>. La dispersión que sientes no viene de falta de foco, viene de que llevas demasiado tiempo operando en un nivel que no puedes sostener.<br><br>No necesitas más motivación ni un sistema más ajustado. Necesitas <strong>rediseñar el ritmo</strong> desde la energía real que tienes.`
+  }
+};
+
+let current = 0;
+let answers = [];
+let selected = null;
+
+function startQuiz() {
+  document.getElementById('screen-intro').style.display = 'none';
+  document.getElementById('screen-quiz').style.display = 'block';
+  renderQ();
+}
+
+function renderQ() {
+  const q = questions[current];
+  document.getElementById('q-num').textContent = `Pregunta ${current + 1}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('progress-label').textContent = `${current + 1} de ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${(current / questions.length) * 100}%`;
+
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = '';
+  q.options.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<span class="opt-letter">${o.letter}</span><span>${o.text}</span>`;
+    btn.onclick = () => selectOpt(i, btn);
+    opts.appendChild(btn);
+  });
+
+  selected = null;
+  document.getElementById('btn-next').disabled = true;
+}
+
+function selectOpt(index, el) {
+  document.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  selected = index;
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQ() {
+  if (selected === null) return;
+  answers.push(questions[current].options[selected].profile);
+  current++;
+  if (current < questions.length) {
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('screen-quiz').style.display = 'none';
+  document.getElementById('screen-result').style.display = 'block';
+
+  const counts = { 1: 0, 2: 0, 3: 0 };
+  answers.forEach(p => counts[p]++);
+  const winner = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+  const p = profiles[winner];
+
+  document.getElementById('result-card').innerHTML = `
+    <div class="result-emoji">${p.emoji}</div>
+    <p class="result-profile">${p.name}</p>
+    <p class="result-body">${p.body}</p>
+    <span class="result-badge">${p.badge}</span>
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retry() {
+  current = 0;
+  answers = [];
+  selected = null;
+  document.getElementById('screen-result').style.display = 'none';
+  document.getElementById('screen-intro').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

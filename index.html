@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Qué necesitas trabajar primero para llevar tus ideas a contenido?</title>
+<meta name="description" content="Un quiz de 2 a 3 minutos para descubrir por dónde empezar a convertir tus ideas en contenido, con un pequeño paso para probar esta semana.">
+<meta property="og:title" content="¿Qué necesitas trabajar primero para llevar tus ideas a contenido?">
+<meta property="og:description" content="5 preguntas, 2 a 3 minutos y un pequeño paso para esta semana.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#1d2540;
+  --pink:#ff6fb1;
+  --pink-soft:#ffd6e8;
+  --pink-pale:#fff0f7;
+  --blue:#2f6fe4;
+  --blue-deep:#0b49c4;
+  --blue-soft:#cfe2ff;
+  --blue-pale:#eef5ff;
+  --yellow:#ffe46b;
+  --green:#7ee3a3;
+  --lilac:#cdb6ff;
+  --orange:#ffb27a;
+  --font-body: Tahoma, "Segoe UI", Verdana, system-ui, sans-serif;
+  --font-display: "Fredoka", "Trebuchet MS", Tahoma, sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  color:var(--ink);
+  padding:28px 14px 84px;
+  background:
+    radial-gradient(circle at 12% 8%, #ffe3f1 0, transparent 38%),
+    radial-gradient(circle at 90% 14%, #cfe3ff 0, transparent 40%),
+    radial-gradient(circle at 70% 95%, #ffd6e8 0, transparent 42%),
+    linear-gradient(180deg,#d9e9ff 0%, #f6e4ff 55%, #ffe1ef 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+/* grilla tipo cuaderno */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(47,111,228,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,111,228,.07) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+/* ruido */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .5  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.stage{position:relative;z-index:1;max-width:760px;margin:0 auto}
+
+/* ---------- logo sticker ---------- */
+.brand{
+  position:relative;z-index:3;
+  display:block;width:176px;margin:0 0 22px 6px;
+  background:#fff;
+  border:3px solid var(--ink);border-radius:18px;
+  padding:10px 14px 8px;
+  box-shadow:5px 5px 0 var(--pink), 5px 5px 0 3px var(--ink);
+  transform:rotate(-3deg);
+  transition:transform .15s;
+}
+.brand:hover{transform:rotate(-1deg) scale(1.03)}
+.brand:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.brand::before{
+  content:"";position:absolute;top:-14px;right:22px;width:64px;height:22px;
+  background:rgba(255,228,107,.8);border:1px solid rgba(29,37,64,.25);transform:rotate(5deg);
+}
+.brand img{display:block;width:100%;height:auto}
+@media (max-width:520px){ .brand{width:140px;margin-bottom:18px} }
+
+/* ---------- decoración collage ---------- */
+.deco{position:absolute;pointer-events:none;z-index:0}
+.deco svg{display:block}
+.d-star1{top:96px;left:-30px;width:46px;color:var(--yellow);transform:rotate(-12deg)}
+.d-star2{bottom:40px;right:-30px;width:34px;color:var(--pink);transform:rotate(14deg)}
+.d-cd{top:150px;right:-62px;width:96px;transform:rotate(12deg)}
+.d-note{bottom:-18px;left:-34px;width:150px;transform:rotate(-6deg)}
+.mini-win{
+  background:#fff;border:2px solid var(--ink);border-radius:8px 8px 4px 4px;
+  box-shadow:3px 3px 0 var(--blue);font-size:11px;overflow:hidden
+}
+.mini-win .mt{background:linear-gradient(180deg,#5a98ff,#2f6fe4);color:#fff;padding:3px 8px;font-weight:700;font-size:10px}
+.mini-win .mb{padding:6px 8px;color:var(--ink);line-height:1.35}
+@media (max-width:860px){ .deco{display:none} }
+
+/* ---------- ventana ---------- */
+.window{
+  position:relative;z-index:1;
+  background:var(--blue-pale);
+  border:3px solid var(--ink);
+  border-radius:14px 14px 10px 10px;
+  box-shadow:7px 7px 0 var(--pink), 7px 7px 0 3px var(--ink);
+  overflow:hidden;
+}
+.titlebar{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px 8px 12px;
+  background:linear-gradient(180deg,#6ea6ff 0%, #2f6fe4 45%, #1f5bd0 100%);
+  border-bottom:3px solid var(--ink);
+  color:#fff;
+}
+.titlebar .ico{width:22px;height:19px;flex:none;color:var(--yellow)}
+.titlebar .ttl{
+  font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:.2px;
+  text-shadow:1px 1px 0 rgba(11,73,196,.8);
+  flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.wbtns{display:flex;gap:5px}
+.wbtns span{
+  width:24px;height:22px;border:2px solid #fff;border-radius:6px;
+  display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;
+  background:linear-gradient(180deg,#8bb8ff,#2f6fe4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+.wbtns span.x{background:linear-gradient(180deg,#ff9cc8,#ff4f9b)}
+.addr{
+  display:flex;align-items:center;gap:8px;padding:7px 12px;font-size:12.5px;
+  background:#f3f7ff;border-bottom:2px solid var(--blue-soft);color:#40507a
+}
+.addr .field{
+  flex:1;background:#fff;border:2px solid #9db8ee;border-radius:6px;
+  padding:3px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.addr svg{width:18px;height:15px;color:var(--pink);flex:none}
+
+.content{
+  padding:44px 48px 52px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.55)),
+    var(--pink-pale);
+  min-height:420px;
+}
+@media (max-width:620px){ .content{padding:30px 22px 38px} }
+
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0;color:var(--ink)}
+h1{font-size:clamp(28px,6.4vw,40px);font-weight:700}
+h2{font-size:clamp(22px,5vw,29px);font-weight:600}
+h3{font-size:18px;font-weight:600}
+h1:focus,h2:focus{outline:none}
+p{margin:0 0 18px;line-height:1.65}
+.lead{font-size:18px;max-width:52ch}
+.intro .tag{margin-bottom:22px}
+.intro h1{margin-bottom:22px}
+.intro .go{margin-top:34px}
+.small{font-size:13.5px;color:#4a5a86;margin:0}
+.hl{
+  background:linear-gradient(transparent 58%, var(--yellow) 58%);
+  padding:0 2px;
+}
+.pink{color:var(--pink)}
+.blue{color:var(--blue)}
+
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:700;
+  background:var(--yellow);border:2px solid var(--ink);border-radius:999px;
+  padding:3px 11px;margin-bottom:14px;
+  transform:rotate(-1.5deg);
+}
+.tag svg{width:13px;height:13px}
+
+/* carpetas intro */
+.folders{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 6px}
+.fold{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  width:78px;font-size:12px;font-weight:700;text-align:center;
+}
+.fold svg{width:54px;height:44px;filter:drop-shadow(2px 2px 0 rgba(29,37,64,.18))}
+
+/* botones */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--font-display);font-weight:600;font-size:17px;
+  color:var(--ink);text-decoration:none;cursor:pointer;
+  background:linear-gradient(180deg,#ff9fcb 0%, #ff6fb1 100%);
+  border:3px solid var(--ink);border-radius:12px;
+  padding:11px 22px;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .1s, box-shadow .1s;
+}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn:focus-visible,.opt:focus-visible,.link:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.btn.blue{background:linear-gradient(180deg,#8fb9ff,#4b86f0);color:#fff;text-shadow:1px 1px 0 var(--blue-deep)}
+.btn.ghost{background:#fff;box-shadow:4px 4px 0 var(--blue)}
+.btn svg{width:18px;height:18px;flex:none}
+.link{
+  background:none;border:0;padding:4px 2px;font:inherit;font-size:14px;
+  color:var(--blue-deep);text-decoration:underline;cursor:pointer
+}
+
+/* progreso tipo XP */
+.progress{margin-bottom:34px}
+.progress .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:6px}
+.bar{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:4px;
+  background:#fff;border:2px solid var(--ink);border-radius:8px;padding:4px;
+}
+.bar i{height:14px;border-radius:3px;background:#e4ecff}
+.bar i.on{background:linear-gradient(180deg,#ffb3d6,#ff6fb1)}
+.bar i.cur{background:linear-gradient(180deg,#a9ccff,#2f6fe4)}
+
+/* opciones */
+.q{margin-bottom:30px}
+.opts{display:grid;gap:16px}
+.opt{
+  display:flex;align-items:flex-start;gap:14px;text-align:left;width:100%;
+  font:inherit;font-size:16px;line-height:1.5;color:var(--ink);cursor:pointer;
+  background:#fff;border:3px solid var(--ink);border-radius:12px;
+  padding:16px 18px;box-shadow:3px 3px 0 var(--blue-soft);
+  transition:transform .1s, background .1s, box-shadow .1s;
+}
+.opt:hover{background:var(--pink-pale);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--pink)}
+.opt.sel{background:var(--pink-soft);box-shadow:4px 4px 0 var(--pink)}
+.opt .lt{
+  flex:none;width:30px;height:30px;border-radius:8px;border:2px solid var(--ink);
+  display:grid;place-items:center;font-family:var(--font-display);font-weight:700;
+  background:var(--blue-soft)
+}
+.opt.sel .lt{background:var(--pink);color:#fff}
+.nav{display:flex;justify-content:flex-start;align-items:center;margin-top:30px;min-height:34px}
+
+/* resultado */
+.rescard{margin-bottom:44px}
+.rescard + .rescard{padding-top:40px;border-top:3px dashed var(--pink)}
+.reshead{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+.reshead .big{flex:none;width:84px}
+.reshead .big svg{width:84px;height:68px;filter:drop-shadow(3px 3px 0 rgba(29,37,64,.2))}
+.reshead small{display:block;font-size:12.5px;font-weight:700;color:var(--blue-deep);margin-bottom:3px;text-transform:uppercase;letter-spacing:.6px}
+.sticky{
+  position:relative;margin:38px 0 26px;
+  background:var(--yellow);
+  border:2px solid var(--ink);border-radius:4px 4px 14px 4px;
+  padding:28px 24px 20px;
+  box-shadow:4px 4px 0 var(--ink);
+  transform:rotate(-.8deg);
+}
+.sticky::before{
+  content:"";position:absolute;top:-13px;left:50%;width:84px;height:24px;margin-left:-42px;
+  background:rgba(255,111,177,.55);border:1px solid rgba(29,37,64,.25);transform:rotate(2deg);
+}
+.sticky h3{margin-bottom:14px}
+.sticky p{font-size:14px;line-height:1.75}
+.remember{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--blue-soft);border:2px dashed var(--blue-deep);border-radius:10px;
+  padding:16px 18px;margin-bottom:6px;font-weight:700;font-size:14px;line-height:1.7
+}
+.remember svg{width:20px;height:20px;flex:none;color:var(--blue-deep);margin-top:2px}
+.tienote{
+  background:#fff;border:3px solid var(--ink);border-radius:12px;padding:18px 20px;
+  box-shadow:4px 4px 0 var(--lilac);margin-bottom:38px;line-height:1.6
+}
+
+/* bloque CTA */
+.cta{
+  margin-top:20px;
+  background:#fff;border:3px solid var(--ink);border-radius:12px;overflow:hidden;
+  box-shadow:5px 5px 0 var(--blue)
+}
+.cta .mt{
+  background:linear-gradient(180deg,#ff9fcb,#ff6fb1);
+  border-bottom:3px solid var(--ink);
+  padding:7px 16px;font-family:var(--font-display);font-weight:600;font-size:15px
+}
+.cta .mb{padding:28px 26px 30px}
+.cta .intro-cta{margin-bottom:26px}
+.offers{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:620px){ .offers{grid-template-columns:1fr} }
+.offer{
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+  background:var(--blue-pale);border:2px solid var(--ink);border-radius:12px;
+  padding:22px 20px 24px
+}
+.offer.two{background:var(--pink-pale)}
+.offer h3{font-size:19px}
+.offer p{margin:0;font-size:15px}
+.offer .btn{margin-top:auto;width:100%;font-size:16px;padding:12px 16px}
+.offer .btns{margin-top:auto;width:100%;display:flex;flex-direction:column;gap:14px}
+.offer .btns .btn{margin-top:0}
+.cta .beta{font-size:13.5px;color:#4a5a86;margin:24px 0 0}
+.btn.wa{background:linear-gradient(180deg,#9bf0bb,#4fd68a);color:var(--ink)}
+.btn.blue svg{color:#7ee3a3}
+
+/* contacto — reproductor estilo Winamp */
+.amp{
+  margin-top:56px;
+  background:#232a47;color:#e9eeff;
+  border:3px solid var(--ink);border-radius:12px;overflow:hidden;
+  box-shadow:6px 6px 0 var(--blue)
+}
+.amp-bar{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 12px;
+  background:repeating-linear-gradient(90deg,#4a5584 0 2px,#3a4570 2px 4px);
+  border-bottom:3px solid var(--ink);
+  font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#e9eeff
+}
+.amp-bar .dot{width:12px;height:12px;border-radius:50%;background:var(--pink);border:2px solid var(--ink);flex:none}
+.amp-bar .ttl2{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.amp-bar .bt{display:flex;gap:5px}
+.amp-bar .bt i{width:14px;height:14px;background:#cfd8f5;border:2px solid var(--ink);border-radius:3px}
+.amp-body{padding:34px 30px 36px}
+@media (max-width:620px){ .amp-body{padding:26px 20px 30px} }
+.amp-lcd{
+  background:#0f1426;border:3px solid #4a5584;border-radius:8px;
+  padding:16px 16px 14px;margin-bottom:34px;
+  box-shadow:inset 0 0 18px rgba(0,0,0,.6)
+}
+.eq{display:flex;align-items:flex-end;gap:4px;height:38px}
+.eq i{
+  flex:1;max-width:12px;height:20%;border-radius:1px;
+  background:linear-gradient(to top,#7ee3a3,#ffe46b 60%,#ff6fb1);
+  animation:eq 1.2s ease-in-out infinite alternate
+}
+.eq i:nth-child(3n){animation-duration:.9s}
+.eq i:nth-child(4n){animation-duration:1.5s}
+.eq i:nth-child(odd){animation-delay:-.4s}
+.eq i:nth-child(5n){animation-delay:-.8s}
+@keyframes eq{from{height:12%}to{height:100%}}
+.amp-scroll{
+  overflow:hidden;white-space:nowrap;margin-top:12px;
+  font-family:"Courier New",Courier,monospace;font-size:13px;color:#7ee3a3;
+  text-shadow:0 0 6px rgba(126,227,163,.6)
+}
+.amp-scroll span{display:inline-block;padding-left:100%;animation:scr 16s linear infinite}
+@keyframes scr{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){
+  .eq i{animation:none;height:55%}
+  .amp-scroll span{animation:none;padding-left:0}
+}
+.amp h3{color:#fff;font-size:22px;margin-bottom:14px}
+.amp .sub{margin:0 0 6px;color:#cfd8f5;font-size:15.5px}
+.amp form{display:grid;gap:26px;margin-top:30px}
+.amp .fld label{
+  display:block;margin-bottom:9px;
+  font-family:"Courier New",Courier,monospace;font-size:13px;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;color:#7ee3a3
+}
+.amp .fld .opt-tag{color:#8d9bc9;font-weight:400;text-transform:none;letter-spacing:0}
+.amp input[type=text],.amp input[type=email],.amp input[type=tel],.amp textarea{
+  display:block;width:100%;font:inherit;font-size:16px;line-height:1.5;color:#eaffef;
+  background:#0f1426;border:2px solid #4a5584;border-radius:8px;
+  padding:13px 14px;box-shadow:inset 0 0 10px rgba(0,0,0,.5)
+}
+.amp textarea{resize:vertical;min-height:96px}
+.amp ::placeholder{color:#8d9bc9;opacity:1}
+.amp input:focus-visible,.amp textarea:focus-visible{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,177,.35)}
+.amp .count{margin-top:6px;text-align:right;font-family:"Courier New",Courier,monospace;font-size:12px;color:#8d9bc9}
+.amp .row2{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.amp-play{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ink);
+  background:linear-gradient(180deg,#f4f7ff,#aab6de);
+  border:3px solid var(--ink);border-radius:999px;padding:11px 26px 11px 18px;
+  box-shadow:4px 4px 0 var(--pink);
+  transition:transform .1s, box-shadow .1s
+}
+.amp-play:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--pink)}
+.amp-play:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--pink)}
+.amp-play:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.amp-play[disabled]{opacity:.6;cursor:wait}
+.amp-play .tri{color:var(--pink);font-size:15px}
+.amp .promise{margin:0;font-size:14px;color:#cfd8f5;flex:1 1 220px}
+.amp .msg{
+  margin:22px 0 0;font-family:"Courier New",Courier,monospace;font-size:14.5px;font-weight:700;
+  color:#7ee3a3;text-shadow:0 0 6px rgba(126,227,163,.5)
+}
+.amp .msg.err{color:#ffb3d6;text-shadow:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+
+.again{margin-top:38px;text-align:center}
+
+/* barra de tareas */
+.taskbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;height:46px;
+  display:flex;align-items:center;gap:10px;padding:0 0 0 0;
+  background:linear-gradient(180deg,#5b94ff 0%, #2f6fe4 12%, #1f5bd0 100%);
+  border-top:3px solid var(--ink);
+}
+.start{
+  height:100%;display:flex;align-items:center;gap:8px;padding:0 22px 0 14px;
+  font-family:var(--font-display);font-weight:700;font-size:19px;font-style:italic;color:#fff;
+  text-shadow:1px 2px 0 rgba(120,0,70,.55);text-decoration:none;
+  background:linear-gradient(180deg,#ff9cc8,#ff5fa8 55%,#e64a92);
+  border-right:3px solid var(--ink);border-radius:0 18px 18px 0;
+}
+.start svg{width:20px;height:20px;color:#fff}
+.task{
+  height:30px;display:flex;align-items:center;gap:7px;padding:0 14px;
+  background:#4d86f0;border:2px solid #1b4fb5;border-radius:6px;color:#fff;font-size:12.5px;
+  max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.task svg{width:15px;height:13px;color:var(--yellow);flex:none}
+.tray{
+  margin-left:auto;height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;
+  background:linear-gradient(180deg,#5aa0ff,#2a78e8);border-left:3px solid var(--ink);
+  color:#fff;font-size:12.5px;font-weight:700
+}
+.tray svg{width:14px;height:14px;color:var(--yellow)}
+.tray .wa-tray{
+  display:flex;align-items:center;gap:7px;color:#fff;text-decoration:none;
+  background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.7);border-radius:999px;
+  padding:3px 11px 3px 6px;height:28px
+}
+.tray .wa-tray:hover{background:rgba(255,255,255,.32)}
+.tray .wa-tray:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.tray .wa-tray svg{width:18px;height:18px;color:#4fd68a}
+.tray .bolt-tray svg{color:var(--yellow)}
+.toast-amp{
+  position:fixed;right:12px;bottom:58px;z-index:70;max-width:280px;
+  background:#232a47;color:#7ee3a3;border:3px solid var(--ink);border-radius:10px;
+  padding:10px 14px;font-family:"Courier New",Courier,monospace;font-size:13px;font-weight:700;
+  box-shadow:4px 4px 0 var(--pink)
+}
+@media (max-width:520px){ .task{display:none} .start{font-size:17px} .tray .wa-tray span{display:none} .tray .wa-tray{padding:3px 6px} }
+
+/* animación de entrada */
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+.screen{animation:pop .28s ease-out}
+@media (prefers-reduced-motion:reduce){
+  .screen{animation:none}
+  .btn,.opt{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- iconos reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-folder" viewBox="0 0 64 52">
+      <path d="M3 8a4 4 0 0 1 4-4h16l6 6h28a4 4 0 0 1 4 4v30a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" fill="currentColor" stroke="#1d2540" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M7 19h50" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24">
+      <path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z" fill="currentColor" stroke="#1d2540" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-win" viewBox="0 0 22 19">
+      <rect x="1" y="1" width="20" height="17" rx="3" fill="currentColor" stroke="#1d2540" stroke-width="2"/>
+      <rect x="1" y="1" width="20" height="5" rx="2" fill="#fff" opacity=".6"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 20 20">
+      <path d="M3 10h13M11 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-cal" viewBox="0 0 20 20">
+      <rect x="2" y="4" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M2 8.5h16M6 2v4M14 2v4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M14 1 4 13.500h6.500L9 23l11-13.500h-6.800z" fill="currentColor" stroke="#1d2540" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M12 2.5a9.500 9.500 0 0 0-8.100 14.400L2.600 21.400l4.600-1.200A9.500 9.500 0 1 0 12 2.500z" fill="currentColor" stroke="#1d2540" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M8.600 8.300c.3-.6.900-.6 1.200-.1l.8 1.300c.2.400.1.800-.2 1.100l-.5.500c.6 1.200 1.500 2.100 2.700 2.700l.5-.5c.3-.3.700-.4 1.100-.2l1.300.8c.5.300.5.900.1 1.300-.8.800-1.800 1-3 .5-2.600-1-4.300-2.700-5.200-5.300-.2-1 0-1.600.2-2.100z" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <!-- logo (tal cual, como sticker) -->
+  <a class="brand" id="brandLink" href="#" aria-label="holanamias">
+    <img src="logo.png" width="908" height="541" alt="holanamias">
+  </a>
+
+  <!-- collage -->
+  <div class="deco d-star1" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-sparkle"/></svg></div>
+  <div class="deco d-star2" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-sparkle"/></svg></div>
+  <div class="deco d-cd" aria-hidden="true">
+    <svg viewBox="0 0 100 100">
+      <defs><linearGradient id="cdg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffd6e8"/><stop offset=".35" stop-color="#cfe2ff"/><stop offset=".65" stop-color="#e6d6ff"/><stop offset="1" stop-color="#ffe9a6"/>
+      </linearGradient></defs>
+      <circle cx="50" cy="50" r="46" fill="url(#cdg)" stroke="#1d2540" stroke-width="3"/>
+      <circle cx="50" cy="50" r="15" fill="#fff0f7" stroke="#1d2540" stroke-width="3"/>
+      <circle cx="50" cy="50" r="5" fill="#1d2540"/>
+      <path d="M20 30a36 36 0 0 1 22-14" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+    </svg>
+  </div>
+  <div class="deco d-note mini-win" aria-hidden="true">
+    <div class="mt">ideas_que_quedan.txt</div>
+    <div class="mb">• idea 1 (esta sí)<br>• idea 2 (en espera)<br>• idea 3 (en espera)<br>• …idea 40</div>
+  </div>
+
+  <main class="window" aria-labelledby="win-title">
+    <div class="titlebar">
+      <svg class="ico" viewBox="0 0 22 19" aria-hidden="true"><use href="#i-win"/></svg>
+      <div class="ttl" id="win-title">Del cuaderno al post · quiz.exe</div>
+      <div class="wbtns" aria-hidden="true"><span>–</span><span>□</span><span class="x">×</span></div>
+    </div>
+    <div class="addr" aria-hidden="true">
+      <span>Dirección</span>
+      <div class="field">C:\Mis ideas\Cuaderno\por-donde-empezar.quiz</div>
+      <svg viewBox="0 0 64 52"><use href="#i-folder"/></svg>
+    </div>
+
+    <div class="content" id="screen" aria-live="polite"></div>
+  </main>
+</div>
+
+<div class="taskbar">
+  <a class="start" id="startLink" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>holanamias</a>
+  <div class="task"><svg viewBox="0 0 22 19" aria-hidden="true"><use href="#i-win"/></svg>Del cuaderno al post</div>
+  <div class="tray">
+    <a class="wa-tray bolt-tray" id="contactTray" href="#contacto" title="Dejar mi contacto" aria-label="Dejar mi contacto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg><span>contacto.mp3</span>
+    </a>
+    <a class="wa-tray" id="waTray" href="#" target="_blank" rel="noopener" title="Escríbeme por WhatsApp" aria-label="Escríbeme por WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span>
+    </a>
+    <span id="clock">--:--</span>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   CONFIGURACIÓN — cambia solo esto
+   ===================================================== */
+const CONFIG = {
+  // Tu WhatsApp
+  whatsapp: "https://wa.me/56999664595",
+  // Mensajes que aparecen escritos cuando la persona abre el chat
+  mensajeTaller: "¡Hola! Hice el quiz y quiero saber del taller Del cuaderno al post.",
+  mensajeSesion: "¡Hola! Hice el quiz y quiero consultar por una sesión 1:1.",
+  mensajeGeneral: "¡Hola! Hice el quiz y tengo una consulta.",
+  // Si más adelante tienes un formulario/lista de espera o un Calendly, pon el link aquí.
+  // Si lo dejas vacío (""), el botón abre WhatsApp.
+  tallerUrl: "",
+  sesionUrl: "",
+  // Botón "Quiero agendar ahora!" de la sesión 1:1
+  agendaUrl: "https://holanamias.tiendup.com/s/sesion1-1",
+  // Link de tu Google Sheet (la URL que termina en /exec, ver GUIA en apps-script.gs).
+  // Mientras esté vacío ("") el cuadro para dejar el contacto NO se muestra.
+  sheetUrl: "https://script.google.com/macros/s/AKfycbzFH8WQqBXE0YdTmFfmxHd2MDVLsbhZxJL9rrIsi6fSNhcpdUoHt7nYLroXWET4LeaGlA/exec",
+  // Tu Instagram (logo de arriba y botón "holanamias" de la barra de abajo)
+  instagramUrl: "https://www.instagram.com/holanamias",
+  // Cuando tengas definidos fecha, precio, cupos, etc., escríbelo aquí.
+  // Si lo dejas vacío (""), no se muestra nada.
+  tallerDetalle: ""
+};
+
+const waLink = msg => CONFIG.whatsapp + (msg ? "?text=" + encodeURIComponent(msg) : "");
+
+/* =====================================================
+   CONTENIDO
+   ===================================================== */
+const QUESTIONS = [
+  {
+    q: "Cuando piensas en crear contenido para tu negocio, ¿qué te pasa más seguido?",
+    o: [
+      "Se me ocurren muchas cosas, pero no sé cuál elegir.",
+      "Tengo una idea, pero no sé cómo convertirla en un post, reel o historia.",
+      "Empiezo a preparar algo, pero me cuesta terminarlo y publicarlo.",
+      "Sé más o menos qué podría compartir, pero me frena mostrarme o sentir que estoy vendiendo."
+    ]
+  },
+  {
+    q: "Cuando anotas o guardas una idea para publicar, ¿qué te pasa normalmente después?",
+    o: [
+      "Se suma a una lista enorme y después no sé por cuál partir.",
+      "La miro y pienso: “Ya, pero ¿qué digo exactamente o cómo lo muestro?”.",
+      "La retomo, avanzo un poco y después la dejo pendiente.",
+      "Empiezo a pensar qué dirán, si se verá ridículo o si alguien lo encontrará interesante."
+    ]
+  },
+  {
+    q: "¿En qué parte del proceso sientes que se te va más energía?",
+    o: [
+      "En decidir el tema y descartar las otras ideas.",
+      "En ordenar lo que quiero decir para que se entienda.",
+      "En grabar, editar, subtitular, diseñar o terminar los detalles.",
+      "En atreverme a publicar, hablar de lo que vendo o invitar a comprar."
+    ]
+  },
+  {
+    q: "Imagina que tienes una hora disponible para crear una publicación. ¿Qué es más probable que pase?",
+    o: [
+      "Investigo, miro referencias y cambio de tema porque se me ocurren otras opciones.",
+      "Sé de qué quiero hablar, pero me enredo intentando encontrar la forma de explicarlo.",
+      "Me pongo a hacerlo, pero el tiempo se me va en los detalles y queda a medias.",
+      "Me cuestiono tanto si debería publicarlo que termino postergándolo."
+    ]
+  },
+  {
+    q: "Si pudieras destrabar una sola cosa esta semana, ¿cuál elegirías?",
+    o: [
+      "Elegir una idea y dejar de saltar entre tantas opciones.",
+      "Aprender a transformar una idea en algo concreto que pueda compartir.",
+      "Encontrar una forma más sencilla de terminar y publicar sin que me consuma todo el día.",
+      "Sentirme un poco más cómoda mostrando mi trabajo y hablando de lo que ofrezco."
+    ]
+  }
+];
+
+const RESULTS = {
+  A: {
+    tag: "Elegir",
+    color: "#ff6fb1",
+    title: "Puede que necesites elegir antes de crear",
+    body: [
+      "Por tus respuestas, yo creo que no te faltan ideas, sino que tienes tantas dando vueltas que elegir una se vuelve una tarea más. Tienes colecciones de guardados en Instagram, Pinterest, anotas temas en tus libretas, después ves un reel que cambia todo… y publicar queda para después.",
+      "No necesitas <em>la idea perfecta</em> ni un calendario de treinta publicaciones. Por ahora es suficiente con elegir una idea que ayude a tus posibles clientes a entender qué haces o qué necesitan antes de comprarte."
+    ],
+    step: "Anota tres preguntas que tus clientes te hacen, o que imaginas que podrían hacerse antes de comprarte. Elige una y escribe una respuesta como se la explicarías a una persona que tienes al frente. Esa respuesta puede ser el punto de partida de una publicación.",
+    remember: "No tienes que resolver todo tu contenido hoy. Solo necesitas elegir por dónde empezar.",
+    cta: "¿Te serviría hacer este ejercicio acompañada y convertir una idea en contenido junto a otras personas que están en las mismas?",
+    alt: "Si prefieres aterrizarlo directamente a tu negocio, podemos trabajar juntas en una sesión individual."
+  },
+  B: {
+    tag: "Dar forma",
+    color: "#4b86f0",
+    title: "Puede que necesites darle forma a tus ideas",
+    body: [
+      "Por tus respuestas, capaz que tengas claro de qué quieres hablar, pero te cueste pasar de “tengo esta idea” a “esto es lo que voy a publicar”. Empiezas a escribir y aparecen mil preguntas: ¿cómo lo explico?, ¿reel o carrusel?, ¿se entenderá?",
+      "A veces decidimos el formato antes de tener claro el mensaje, y eso lo complica todo. Primero ordena qué quieres que la otra persona entienda; después eliges cómo compartirlo."
+    ],
+    step: "Completa esta frase sin preocuparte todavía del formato:<br><strong>“Quiero que una persona que podría comprarme entienda que __________”.</strong><br><br>Después escribe tres cosas que le explicarías para ayudarla a entenderlo. Con eso ya tienes una base para una publicación. No hace falta que quede bonita ni lista a la primera.",
+    remember: "Primero aclara el mensaje; después decides si será un post, una historia o un video.",
+    cta: "¿Quieres practicar cómo pasar de una idea suelta a una publicación concreta?",
+    alt: "Si tienes una idea específica que quieres trabajar para tu negocio, podemos aterrizarla juntas en una sesión individual."
+  },
+  C: {
+    tag: "Terminar",
+    color: "#ffd24a",
+    title: "Puede que necesites hacer más liviano el proceso",
+    body: [
+      "Por tus respuestas, quizás lo difícil no esté en tener ideas, sino en llegar al final. Aparecen más tareas (otra toma, editar, subtitular, ajustar el diseño) y algo que parecía pequeño se lleva toda tu energía o queda pendiente.",
+      "No significa que seas poco constante o que te falte disciplina: a veces el proceso que nos exigimos es demasiado pesado para el tiempo y la energía que tenemos. Puede servirte reducir pasos y definir desde antes qué significa que una publicación esté lista."
+    ],
+    step: "Elige una idea sencilla y define su versión mínima publicable. Por ejemplo: una historia con una foto de tu trabajo y dos frases, un video corto de un proceso que ya haces o un texto que responda una pregunta frecuente. Antes de empezar, decide qué cosas son imprescindibles y cuáles puedes dejar fuera esta vez.",
+    remember: "Terminar una versión sencilla también cuenta. No toda publicación necesita convertirse en una producción.",
+    cta: "¿Te gustaría simplificar el proceso y salir con una idea aterrizada?",
+    alt: "Si quieres revisar qué está haciendo tan pesado el proceso en tu caso, podemos conversarlo y buscar una alternativa realista en una sesión individual."
+  },
+  D: {
+    tag: "Mostrar",
+    color: "#b79cff",
+    title: "Puede que necesites encontrar una forma más cómoda de mostrarte",
+    body: [
+      "Por tus respuestas, puede que parte de lo que te esté costando esté en exponerte o en hablar de lo que vendes: que se vea ridículo, que parezca demasiado vendedor, que te juzguen. Y aunque tengas la idea, le das vueltas antes de publicarla.",
+      "No necesitas mostrar toda tu vida ni bailar frente a la cámara. Mostrar un proceso, explicar una decisión o responder una pregunta también permite que te conozcan, incluso sin hablar directo a cámara."
+    ],
+    step: "Comparte una cosa concreta de tu trabajo: una foto de un producto, un detalle del proceso, una decisión que tomaste o una pregunta que te hacen seguido. Súmale una frase que explique por qué la elegiste o qué te gustaría que la gente supiera. No necesitas contar algo íntimo ni hacer una venta directa si hoy eso se siente demasiado.",
+    remember: "Comunicar lo que haces no significa tener que mostrarlo todo. Puedes empezar por una parte que te resulte cómoda.",
+    cta: "¿Quieres probar maneras de convertir tus ideas en contenido sin sentir que tienes que actuar como otra persona?",
+    alt: "Si prefieres pensar una forma de comunicar tu trabajo que encaje contigo y con tu negocio, podemos explorarlo juntas en una sesión individual."
+  }
+};
+
+const KEYS = ["A", "B", "C", "D"];
+
+/* =====================================================
+   LÓGICA
+   ===================================================== */
+const screen = document.getElementById("screen");
+let answers = [];   // índice 0..3 por pregunta
+let current = 0;
+
+const ICON = (id, cls = "") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><use href="#${id}"/></svg>`;
+const FOLDER = (color, w) => `<svg viewBox="0 0 64 52" style="color:${color};${w ? "width:" + w : ""}" aria-hidden="true"><use href="#i-folder"/></svg>`;
+
+function render(html, focusSel) {
+  screen.innerHTML = `<div class="screen">${html}</div>`;
+  const f = screen.querySelector(focusSel || "h1,h2");
+  if (f) { f.setAttribute("tabindex", "-1"); f.focus({ preventScroll: true }); }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showIntro() {
+  answers = []; current = 0;
+  render(`
+    <div class="intro">
+      <span class="tag">${ICON("i-sparkle")} Quiz · 2 a 3 minutos</span>
+      <h1>¿Qué necesitas trabajar <span class="hl">primero</span> para llevar tus ideas a contenido?</h1>
+      <p class="lead">
+        ¿Mil ideas dando vueltas pero ninguna publicada, publicaciones a medias o vergüenza de mostrarte?
+        Responde 5 preguntas y descubre por dónde podrías empezar, con un pequeño paso para probar esta semana.
+      </p>
+      <p><strong>No necesitas tenerlo todo resuelto ni publicar todos los días.</strong></p>
+      <p class="go"><button class="btn" id="go">Empezar ${ICON("i-arrow")}</button></p>
+      <p class="small">Es una orientación, no un diagnóstico. No te pedimos ningún dato para hacer el quiz.</p>
+    </div>
+  `);
+  document.getElementById("go").addEventListener("click", () => showQuestion(0));
+}
+
+function showQuestion(i) {
+  current = i;
+  const item = QUESTIONS[i];
+  const bars = QUESTIONS.map((_, k) => `<i class="${k < i ? "on" : k === i ? "cur" : ""}"></i>`).join("");
+  const opts = item.o.map((t, k) => `
+    <button class="opt ${answers[i] === k ? "sel" : ""}" data-k="${k}">
+      <span class="lt">${KEYS[k]}</span><span>${t}</span>
+    </button>`).join("");
+  render(`
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="${i + 1}" aria-label="Progreso del quiz">
+      <div class="lbl"><span>Pregunta ${i + 1} de ${QUESTIONS.length}</span><span style="font-weight:400;color:#4a5a86">No hay respuestas correctas</span></div>
+      <div class="bar">${bars}</div>
+    </div>
+    <div class="q"><h2>${item.q}</h2></div>
+    <div class="opts" role="group" aria-label="Opciones">${opts}</div>
+    <div class="nav">
+      ${i > 0 ? `<button class="link" id="back">← Volver</button>` : `<button class="link" id="back">← Inicio</button>`}
+    </div>
+  `);
+  screen.querySelectorAll(".opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      answers[i] = Number(btn.dataset.k);
+      screen.querySelectorAll(".opt").forEach(b => b.classList.remove("sel"));
+      btn.classList.add("sel");
+      setTimeout(() => (i < QUESTIONS.length - 1 ? showQuestion(i + 1) : showResult()), 260);
+    });
+  });
+  document.getElementById("back").addEventListener("click", () => (i > 0 ? showQuestion(i - 1) : showIntro()));
+}
+
+function computeResult() {
+  const counts = [0, 0, 0, 0];
+  answers.forEach(a => counts[a]++);
+  const max = Math.max(...counts);
+  const tied = counts.map((c, k) => (c === max ? k : -1)).filter(k => k >= 0);
+  if (tied.length === 1) return { keys: [KEYS[tied[0]]], tie: false };
+  // empate: manda la respuesta de la pregunta 5
+  if (tied.includes(answers[4])) return { keys: [KEYS[answers[4]]], tie: false };
+  // empate sin resolver: mostramos ambos
+  return { keys: tied.map(k => KEYS[k]), tie: true };
+}
+
+function resultCard(key) {
+  const r = RESULTS[key];
+  return `
+    <section class="rescard">
+      <div class="reshead">
+        <div class="big">${FOLDER(r.color)}</div>
+        <div><small>Carpeta · ${r.tag}</small><h2>${r.title}</h2></div>
+      </div>
+      ${r.body.map(p => `<p>${p}</p>`).join("")}
+      <div class="sticky">
+        <h3>Tu pequeño paso para esta semana</h3>
+        <p style="margin:0">${r.step}</p>
+      </div>
+      <div class="remember">${ICON("i-sparkle")}<span>Un recordatorio con amor: ${r.remember}</span></div>
+    </section>`;
+}
+
+function showResult() {
+  const { keys, tie } = computeResult();
+  const first = RESULTS[keys[0]];
+  const tieNote = tie ? `
+    <div class="tienote">
+      <strong>Tus respuestas apuntan a dos cosas a la vez.</strong>
+      Ambas pueden estar influyendo: empieza por el paso que se sienta más fácil de probar.
+    </div>` : "";
+  const ctaText = tie
+    ? "¿Te serviría practicar esto acompañada, junto a otras personas que están en las mismas?"
+    : first.cta;
+  const altText = tie
+    ? "Si prefieres aterrizarlo directamente a tu negocio, podemos trabajar juntas en una sesión individual."
+    : first.alt;
+  const detalle = CONFIG.tallerDetalle ? ` ${CONFIG.tallerDetalle}` : "";
+  const tallerHref = CONFIG.tallerUrl || waLink(CONFIG.mensajeTaller);
+  const sesionHref = CONFIG.sesionUrl || waLink(CONFIG.mensajeSesion);
+  const tallerIcon = CONFIG.tallerUrl ? ICON("i-arrow") : ICON("i-chat");
+  const sesionIcon = CONFIG.sesionUrl ? ICON("i-cal") : ICON("i-chat");
+
+  render(`
+    <span class="tag">${ICON("i-sparkle")} Tu resultado</span>
+    ${tieNote}
+    ${keys.map(resultCard).join("")}
+
+    <div class="cta">
+      <div class="mt">Si quieres seguir acompañada</div>
+      <div class="mb">
+        <div class="offers">
+          <div class="offer">
+            <h3>Taller: Del cuaderno al Post (Versión Beta)</h3>
+            <p>¿Te serviría un taller para revivir tu Instagram y saber qué publicar junto a otras personas que están en las mismas? Formato Online.</p>
+            <p>Como es una versión inicial, estaré probando el formato y quiero tus comentarios para mejorarlo, por eso el precio es de <strong>$14.000</strong> (solo por esta vez, así que aprovecha y pasa el dato!)</p>
+            <a class="btn wa" href="${tallerHref}" target="_blank" rel="noopener">${tallerIcon} Quiero saber del taller</a>
+          </div>
+          <div class="offer two">
+            <h3>Sesión 1:1</h3>
+            <p>${altText}</p>
+            <div class="btns">
+              <a class="btn blue" href="${sesionHref}" target="_blank" rel="noopener">${sesionIcon} Consultar por una sesión 1:1</a>
+              <a class="btn" href="${CONFIG.agendaUrl}" target="_blank" rel="noopener">${ICON("i-cal")} Quiero agendar ahora!</a>
+            </div>
+          </div>
+        </div>
+        ${detalle ? `<p class="beta">${detalle.trim()}</p>` : ""}
+      </div>
+    </div>
+
+    ${CONFIG.sheetUrl ? `
+    <section class="amp" id="contacto" aria-labelledby="ampTitle">
+      <div class="amp-bar" aria-hidden="true">
+        <span class="dot"></span><span class="ttl2">holanamias player · contacto.mp3</span>
+        <span class="bt"><i></i><i></i><i></i></span>
+      </div>
+      <div class="amp-body">
+        <div class="amp-lcd" aria-hidden="true">
+          <div class="eq">${"<i></i>".repeat(20)}</div>
+          <div class="amp-scroll"><span>♪ información + descuentos especiales ♪ deja tu contacto ♪</span></div>
+        </div>
+        <h3 id="ampTitle">Si quieres tener información y descuentos especiales, déjame tu contacto</h3>
+        <p class="sub">Prometo que serán solo para eso.</p>
+        <form id="listForm" novalidate>
+          <div class="fld">
+            <label for="f-nom">Nombre</label>
+            <input id="f-nom" type="text" name="nombre" placeholder="Tu nombre" autocomplete="given-name" maxlength="80" required>
+          </div>
+          <div class="fld">
+            <label for="f-mail">Correo</label>
+            <input id="f-mail" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
+          </div>
+          <div class="fld">
+            <label for="f-tel">Teléfono <span class="opt-tag">(opcional)</span></label>
+            <input id="f-tel" type="tel" name="telefono" placeholder="+56 9 1234 5678" autocomplete="tel">
+          </div>
+          <div class="fld">
+            <label for="f-int">¿Qué te gustaría saber? <span class="opt-tag">(opcional)</span></label>
+            <textarea id="f-int" name="interes" maxlength="240" rows="3" placeholder="Cuéntame en pocas palabras qué temas te interesan"></textarea>
+            <div class="count" id="f-count" aria-hidden="true">0 / 240</div>
+          </div>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="row2">
+            <button class="amp-play" type="submit"><span class="tri" aria-hidden="true">▶</span> Enviar</button>
+            <p class="promise">Solo el correo es obligatorio. Si quieres que borre tus datos, me escribes y listo.</p>
+          </div>
+        </form>
+        <p class="msg" id="listMsg" role="status"></p>
+      </div>
+    </section>` : ""}
+
+    <div class="again"><button class="link" id="again">↺ Hacer el quiz otra vez</button></div>
+  `, ".tag");
+  document.getElementById("again").addEventListener("click", showIntro);
+
+  const form = document.getElementById("listForm");
+  if (form) {
+    const resultado = keys.map(k => RESULTS[k].tag).join(" + ");
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const msg = document.getElementById("listMsg");
+      const btn = form.querySelector("button");
+      const nombre = form.elements.nombre.value.trim();
+      const email = form.elements.email.value.trim();
+      const telefono = form.elements.telefono.value.trim();
+      const interes = form.elements.interes.value.trim();
+      if (form.elements.botcheck.checked) return;               // trampa para bots
+      if (!nombre) {
+        msg.className = "msg err"; msg.textContent = "Dime tu nombre para saber cómo escribirte."; return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.className = "msg err"; msg.textContent = "Revisa que el correo esté bien escrito."; return;
+      }
+      if (telefono && telefono.replace(/\D/g, "").length < 8) {
+        msg.className = "msg err"; msg.textContent = "Revisa el teléfono, o déjalo en blanco."; return;
+      }
+      btn.disabled = true; msg.className = "msg"; msg.textContent = "Guardando…";
+      try {
+        // "no-cors" + text/plain: es lo que Google Apps Script acepta desde cualquier página
+        await fetch(CONFIG.sheetUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ nombre, email, telefono, interes, resultado, botcheck: "" })
+        });
+        form.style.display = "none";
+        msg.textContent = "♪ ¡Listo! Gracias, te escribo pronto.";
+      } catch (err) {
+        btn.disabled = false; msg.className = "msg err";
+        msg.textContent = "No pude guardar tus datos. Prueba de nuevo o escríbeme por WhatsApp.";
+      }
+    });
+    const ta = form.elements.interes, count = document.getElementById("f-count");
+    ta.addEventListener("input", () => { count.textContent = `${ta.value.length} / 240`; });
+  }
+}
+
+/* reloj de la barra de tareas */
+function tick() {
+  const d = new Date();
+  document.getElementById("clock").textContent =
+    d.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit" });
+}
+tick(); setInterval(tick, 30000);
+
+["startLink", "brandLink"].forEach(id => {
+  const a = document.getElementById(id);
+  a.href = CONFIG.instagramUrl;
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+document.getElementById("waTray").href = waLink(CONFIG.mensajeGeneral);
+
+/* contacto.mp3: lleva al formulario; si aún no se hace el quiz, avisa */
+document.getElementById("contactTray").addEventListener("click", e => {
+  e.preventDefault();
+  const box = document.getElementById("contacto");
+  if (box) {
+    box.scrollIntoView({ behavior: "smooth", block: "start" });
+    const f = document.getElementById("f-nom");
+    if (f) setTimeout(() => f.focus({ preventScroll: true }), 500);
+    return;
+  }
+  const old = document.querySelector(".toast-amp");
+  if (old) old.remove();
+  const t = document.createElement("div");
+  t.className = "toast-amp"; t.setAttribute("role", "status");
+  t.textContent = "♪ Termina el quiz y al final te espera contacto.mp3";
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+});
+
+showIntro();
+</script>
+</body>
+</html>
